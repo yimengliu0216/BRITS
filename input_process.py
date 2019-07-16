@@ -8,6 +8,7 @@ import ujson as json
 
 patient_ids = []
 
+
 for filename in os.listdir('./raw'):
     # the patient data in PhysioNet contains 6-digits
     match = re.search('\d{6}', filename)

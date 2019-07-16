@@ -12,9 +12,9 @@ import argparse
 import data_loader
 
 from . import rits_i
-from sklearn import metrics
 
-from ipdb import set_trace
+#from sklearn import metrics
+#from ipdb import set_trace
 
 SEQ_LEN = 36
 

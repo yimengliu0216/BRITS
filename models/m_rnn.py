@@ -11,8 +11,8 @@ import utils
 import argparse
 import data_loader
 
-from ipdb import set_trace
-from sklearn import metrics
+#from ipdb import set_trace
+#from sklearn import metrics
 
 SEQ_LEN = 48
 
