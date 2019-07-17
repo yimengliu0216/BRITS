@@ -55,7 +55,9 @@ def parse_data(x):
     values = []
 
     for attr in attributes:
-        if x.has_key(attr):
+#        if x.has_key(attr):
+        
+        if attr in x:
             values.append(x[attr])
         else:
             values.append(np.nan)
@@ -81,7 +83,8 @@ def parse_rec(values, masks, evals, eval_masks, dir_):
     deltas = parse_delta(masks, dir_)
 
     # only used in GRU-D
-    forwards = pd.DataFrame(values).fillna(method='ffill').fillna(0.0).as_matrix()
+#    forwards = pd.DataFrame(values).fillna(method='ffill').fillna(0.0).as_matrix()
+    forwards = pd.DataFrame(values).fillna(method='ffill').fillna(0.0).values
 
     rec = {}
 
@@ -130,6 +133,7 @@ def parse_id(id_):
     eval_masks = eval_masks.reshape(shp)
 
     label = out.loc[int(id_)]
+    label = int(label)
 
     rec = {'label': label}
 
@@ -137,8 +141,8 @@ def parse_id(id_):
     rec['forward'] = parse_rec(values, masks, evals, eval_masks, dir_='forward')
     rec['backward'] = parse_rec(values[::-1], masks[::-1], evals[::-1], eval_masks[::-1], dir_='backward')
 
-#    rec = json.dumps(rec)
-    rec = json.dumps(str(rec))
+    rec = json.dumps(rec)
+#    rec = json.dumps(str(rec))
 
     fs.write(rec + '\n')
 
